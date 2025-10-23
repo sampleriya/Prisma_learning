@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+ output = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+
+}
+//attributes starting with @
+//first type is block attribute starting with @@ iska mtlb yeh hain ki yeh pure block pr 
+//apply hoga jo bhi hain user ka yaaa kisi ka bhi
+//second type is inline @ 
+model User {
+  id    String    @id @default(uuid())
+  email String  @unique
+  name  String?
+  age Int?
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  notificationMethods NotificationMethods?
+  blog Bytes?
+  interests String[]
+  role UserRole?
+  updatedAt DateTime? @updatedAt
+  newField String? @ignore
+  cuidId String? @default(cuid())
+  uuidId String? @default(uuid())
+  nanoId String? @default(nanoid())
+  ulId String? @default(ulid())
+   blogs Blog[]
+}
+//1-1
+model NotificationMethods {
+  id    String    @id @default(uuid())
+  phone Boolean
+  email Boolean
+  User User? @relation(fields:[userId],references:[id])
+userId String @unique
+}
+//@map krne se uss naam se column field bnta hain database mein sirf
+//making custom data type
+enum UserRole{
+  Admin
+  User
+}
+
+model Video{
+  id String @id @default(uuid())
+  title String
+  url_720p String @map("720p")
+  url_1080p String @map("1080p")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+//learning @relations
+model Blog{
+  id String @id @default(uuid())
+  title String @db.VarChar(250)
+  content String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  categories Category[]
+  User User? @relation(fields:[userId],references:[id])
+  userId String
+}
+model Category{
+  id String @id @default(uuid())
+  name String @db.VarChar(250)
+ blogs Blog[]
+
+}
+//user and blog ka one to many relation bnaya
+//category and blog ka many to many relation bna re hain
