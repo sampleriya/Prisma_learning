@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 import {PrismaClient} from "./generated/client";
   import userRoutes from "@/routes/user.js"
   dotenv.config({path: './.env',});
+  //
   
   export const envMode = process.env.NODE_ENV?.trim() || 'DEVELOPMENT';
   const port = process.env.PORT || 3000;
