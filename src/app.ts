@@ -7,7 +7,7 @@ import { errorMiddleware } from "@/middlewares/error.js"
 import morgan from "morgan"
 import dotenv from "dotenv";
 import {PrismaClient} from "./generated/client";
-  import userRoutes from "@/routes/user"
+  import userRoutes from "@/routes/user.js"
   dotenv.config({path: './.env',});
   
   export const envMode = process.env.NODE_ENV?.trim() || 'DEVELOPMENT';
@@ -39,7 +39,7 @@ app.use(morgan('dev'))
   
   // your routes here
   app.use("/api",userRoutes);
-  app.get("/api/new-user", async(req, res, next) => {
+  app.get("/api/new-user", async(req, res) => {
 
     const user= await prisma.user.create({
         data:{
