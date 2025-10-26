@@ -1,4 +1,4 @@
-import { envMode } from "@/app.js";
+import { envMode } from "../app.js";
 export const errorMiddleware = (err, req, res, 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 next) => {

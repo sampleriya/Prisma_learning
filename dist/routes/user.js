@@ -1,4 +1,4 @@
-import { checkUser, getAllUsers, getUserBlogs, getUserDetail, newOrUpdateUser } from '@/controllers/user.js';
+import { checkUser, getAllUsers, getUserBlogs, getUserDetail, newOrUpdateUser } from '../controllers/user.js';
 import { Router } from 'express';
 const app = Router();
 app.post('/new-user', newOrUpdateUser);

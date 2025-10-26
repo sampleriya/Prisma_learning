@@ -2,12 +2,13 @@ import 'dotenv/config';
 import express from "express";
 import helmet from "helmet";
 import cors from 'cors';
-import { errorMiddleware } from "@/middlewares/error.js";
+import { errorMiddleware } from "./middlewares/error.js";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import { PrismaClient } from "@prisma/client";
-import userRoutes from "@/routes/user.js";
-dotenv.config({ path: './.env', });
+import userRoutes from "./routes/user.js";
+dotenv.config();
+//
 export const envMode = process.env.NODE_ENV?.trim() || 'DEVELOPMENT';
 const port = process.env.PORT || 3000;
 export const prisma = new PrismaClient();

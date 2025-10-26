@@ -6,9 +6,9 @@ import cors from 'cors'
 import { errorMiddleware } from "@/middlewares/error.js"
 import morgan from "morgan"
 import dotenv from "dotenv";
-import {PrismaClient} from "./generated/client";
+import {PrismaClient} from "@prisma/client";
   import userRoutes from "@/routes/user.js"
-  dotenv.config({path: './.env',});
+  dotenv.config();
   //
   
   export const envMode = process.env.NODE_ENV?.trim() || 'DEVELOPMENT';

@@ -1,5 +1,5 @@
-import { prisma } from "@/app.js";
-import { TryCatch } from "@/middlewares/error.js";
+import { prisma } from "../app.js";
+import { TryCatch } from "../middlewares/error.js";
 export const NewUser = TryCatch(async (req, res) => {
     const { name, email, age } = req.body;
     const user = await prisma.user.create({
